@@ -1,0 +1,22 @@
+<div class="users-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4 users-new-container">
+        <h1 class="text-center text-white">Comment</h1>
+        <%= form_for @comment do |f| %>
+          <div class="form-group">
+            <%= f.label :content, class: 'text-white' %>
+            <%= f.text_area :content, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= hidden_field_tag :topic_id, @topic_id %>
+          </div>
+          <div class="form-group">
+            <%= hidden_field_tag :user_id, current_user.id %>
+          </div>
+          <%= f.submit "コメントする", class: 'btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

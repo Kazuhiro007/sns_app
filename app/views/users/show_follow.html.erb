@@ -1,0 +1,28 @@
+<div class="follow-index">
+  <div class="container">
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <h1><%= @user.name %></h1>
+          <span><%= link_to "プロフィール", user_path(id: @user.id) %></span>
+        </section>
+        <section class="stats">
+          <%= render 'shared/stats' %>
+        </section>
+      </aside>
+      <div class="col-md-8">
+        <h3><%= @title %></h3>
+        <% if @users.any? %>
+          <ul class="users follow">
+            <% @users.each do |u| %>
+              <li>
+                <%= u.name %>:<%= u.profile %>
+                <%= link_to "プロフィール", user_path(id: u.id) %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

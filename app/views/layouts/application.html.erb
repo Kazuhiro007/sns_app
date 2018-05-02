@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pictgram2</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+        <div class="container">
+          <% if logged_in? %>
+            <%= link_to topics_path do %>
+              <span><%= image_tag 'icons/logo.png', class: 'navbar-brand' %></span>
+            <% end %>
+          <% else %>
+            <%= link_to root_path do %>
+              <span><%= image_tag 'icons/logo.png', class: 'navbar-brand' %></span>
+            <% end %>
+          <% end %>
+          <ul class="nav navbar-nav navbar-right">
+            <% if logged_in? %>
+              <li>
+                <%= link_to favorites_index_path do %>
+                  <%= image_tag 'icons/heart.png' %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_topic_path do %>
+                  <%= image_tag 'icons/camera.png' %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to logout_path, method: :delete do %>
+                  <%= image_tag 'icons/logout.png' %>
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to new_user_path do %>
+                  <%= image_tag 'icons/register.png' %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to login_path do %>
+                  <%= image_tag 'icons/login.png' %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
