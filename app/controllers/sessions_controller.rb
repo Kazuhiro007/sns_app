@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       log_in user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to topics_path, notice: 'ログインに成功しました'
     else
       flash.now[:alert] = "ログインに失敗しました"
@@ -14,17 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
-  end
-
-  private
-  def log_in(user)
-    session[:user_id] = user.id
-  end
-
-  def log_out
-    session.delete(:user_id)
-    @current_user = nil
   end
 end

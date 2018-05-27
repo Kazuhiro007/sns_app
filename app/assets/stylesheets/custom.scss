@@ -144,6 +144,25 @@ form-control {
   padding-top: 50px;
 }
 
-.users {
+.users_follow {
   padding-top: 50px;
+}
+
+.users_follow li {
+  list-style: none;
+}
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+    color: #fff;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
 }
